@@ -17,7 +17,7 @@ void    ft_chrtobit(int pid, char *str)
             else
             	kill(pid, SIGUSR2);
             bit--;
-            usleep(100);
+            usleep(142);
         }
         i++;
     }

@@ -18,6 +18,7 @@ void    ft_handler(int sa)
         ft_printf("%c", c);
         i = 0;
         c = 0;
+        ft_printf("\n");
     }
 }
 
