@@ -1,26 +1,6 @@
 #include "minitalk.h"
-#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
-int ft_atoi(char *str)
-{
-	int	res;
-	int	sign;
-
-	res = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-    if (*str == '-')
-        sign *= -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
-	return (res * sign);
-}
 //Mesajı bitlere çevir ve bitleri sırayla sinyal olarak sunucuya gönder
 void    ft_chrtobit(int pid, char *str)
 {
@@ -54,7 +34,7 @@ int main(int ac, char* av[])
         if (kill(server_pid, 0) == -1)
         ft_printf("Invalid PID\n");
 
-        signal(SIGUSR1, ft_chrtobit);
+        signal(SIGUSR1, ft_chrtobit); //sigaction kullanılmalı
     }
     else
     {    

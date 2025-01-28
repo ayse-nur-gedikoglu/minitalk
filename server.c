@@ -1,5 +1,5 @@
 #include "minitalk.h"
-#include "ft_printf/ft_printf.h"
+#include "libft/libft.h"
 
 //Gelen sinyalleri dinler ve bunları anlamlı bir karakter dizisine (string) dönüştürür.
 //Mesaj tamamlandığında bunu ekrana yazdırır.
