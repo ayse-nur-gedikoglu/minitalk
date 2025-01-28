@@ -1,6 +1,6 @@
 #include "minitalk.h"
 #include "libft/libft.h"
-//Mesajı bitlere çevir ve bitleri sırayla sinyal olarak sunucuya gönder
+
 void    ft_chrtobit(int pid, char *str)
 {
     int i;
@@ -13,9 +13,9 @@ void    ft_chrtobit(int pid, char *str)
         while (bit >= 0)
         {
             if ((str[i] >> bit) & 1)
-               kill(pid, SIGUSR1);
+            	kill(pid, SIGUSR1);
             else
-                kill(pid, SIGUSR2);
+            	kill(pid, SIGUSR2);
             bit--;
             usleep(100);
         }
