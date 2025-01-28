@@ -18,5 +18,9 @@ int main(void)
 
     server_pid = getpid();
     ft_printf("Server PID:%d\n", server_pid);
-    
+    //sigaction
+    while (1)
+    {
+        pause();
+    }
 }
