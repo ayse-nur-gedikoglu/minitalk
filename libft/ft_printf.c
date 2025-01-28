@@ -18,16 +18,10 @@ int	ft_change(char c, va_list arg)
 		return (ft_putchar(va_arg(arg, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(arg, char *)));
-	else if (c == 'p')
-		return (ft_ptr(va_arg(arg, unsigned long long)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(arg, int)));
 	else if (c == 'u')
 		return (ft_putunbr(va_arg(arg, unsigned int)));
-	else if (c == 'x')
-		return (ft_smhex(va_arg(arg, unsigned int)));
-	else if (c == 'X')
-		return (ft_bghex(va_arg(arg, unsigned int)));
 	else if (c == '%')
 		return (ft_putchar('%'));
 	return (0);

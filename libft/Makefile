@@ -11,30 +11,22 @@
 # **************************************************************************** #
 
 NAME = libft.a
+SRC= ft_printf.c ft_printf_alnum.c ft_atoi.c
+FLAG = -Wall -Wextra -Werror
+OBJ = $(SRC:.c=.o)
 
-SRCS= ft_printf.c ft_printf_hex.c ft_printf_alnum.c ft_atoi.c
+all: $(NAME)
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-RM = rm -rf
-AR = ar -rc
-
-OBJS = $(SRCS:.c=.o)
-
-all: ${NAME}
-
-${NAME}: ${OBJS}
-	${AR} ${NAME} ${OBJS}
-
-run: ${NAME} $(OBJS)
-	${CC} ${CFLAGS} ${NAME} $(OBJS)
-
+$(NAME):
+	gcc $(FLAG) -c $(SRC)
+	ar rc $(NAME) *.o
+bonus:
+	gcc $(FLAG) -c $(BONUS)
+	ar rc $(NAME) *.o
 clean:
-	${RM} ${OBJS}
-
+	/bin/rm -f  *.o
 fclean: clean
-	${RM} ${NAME}
-
+	/bin/rm -f $(NAME)
 re: fclean all
 
-.PHONY: fclean clean all run
+.PHONY: all bonus clean fclean re

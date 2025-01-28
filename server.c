@@ -1,5 +1,5 @@
 #include "minitalk.h"
-#include "libft/libft.h"
+#include "Libft/libft.h"
 
 void    ft_handler(int sa)
 {

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_putchar(char c)
 {
 	write(1, &c, 1);
@@ -38,7 +40,7 @@ int	ft_putunbr(unsigned int nb)
 	i = 0;
 	if (nb >= 10)
 	{
-		i += ft_putnbr(nb / 10);
+		i += ft_putunbr(nb / 10);
 		nb = nb % 10;
 	}
 	if (nb < 10)

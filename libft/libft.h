@@ -22,5 +22,6 @@ int		ft_putstr(char *str);
 int		ft_putnbr(int nb);
 int		ft_putunbr(unsigned int nb);
 int		ft_change(char c, va_list arg);
+int     ft_atoi(const char *str);
 
 #endif
