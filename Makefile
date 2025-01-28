@@ -1,6 +1,9 @@
 NAME	= minitalk
+
 SERVER	= server
 CLIENT	= client
+LIBFT	= libft
+
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= rm -f
