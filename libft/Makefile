@@ -11,20 +11,34 @@
 # **************************************************************************** #
 
 NAME = libft.a
-SRC= ft_printf.c ft_printf_alnum.c ft_atoi.c
-FLAG = -Wall -Wextra -Werror
-OBJ = $(SRC:.c=.o)
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -Iinc
+
+SRCDIR = src
+OBJDIR = obj
+HEADER_DIR = inc
+
+SRC = $(wildcard $(SRCDIR)/*.c)
+OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAG) -c $(SRC)
-	ar rc $(NAME) *.o
+$(NAME): $(OBJ)
+	@ar rcs $@ $^
+	@echo "Libft başarıyla oluşturuldu!"
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	/bin/rm -f  *.o
+	@rm -rf $(OBJDIR)
+	@echo "Libft geçici dosyaları temizlendi."
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Libft tamamen temizlendi."
 
 re: fclean all
+
+.PHONY: all clean fclean re
