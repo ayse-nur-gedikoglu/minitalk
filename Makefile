@@ -18,7 +18,7 @@ all: libft $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
-	@echo "$(GREEN)Minitalk başarıyla derlendi!$(RESET)"
+	@echo "$(GREEN)Minitalk compiled successfully!$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
@@ -30,12 +30,12 @@ libft:
 clean:
 	@rm -rf $(OBJDIR)
 	@make -C $(LIBFT_DIR) clean
-	@echo "Geçici dosyalar temizlendi."
+	@echo "Temporary files cleared."
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
-	@echo "Tüm dosyalar temizlendi."
+	@echo "All files cleared."
 
 re: fclean all
 

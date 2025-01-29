@@ -25,7 +25,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $@ $^
-	@echo "Libft başarıyla oluşturuldu!"
+	@echo "Libft created successfully!"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
@@ -33,11 +33,11 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 clean:
 	@rm -rf $(OBJDIR)
-	@echo "Libft geçici dosyaları temizlendi."
+	@echo "Cleared libft temporary files."
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Libft tamamen temizlendi."
+	@echo "Libft completely cleaned."
 
 re: fclean all
 
