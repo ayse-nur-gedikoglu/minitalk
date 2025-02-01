@@ -3,22 +3,19 @@
 
 void    ft_handler(int sa)
 {
-    static  int i;
-    static  int c;
+    static  int i = 0;
+    static  int c = 0;
 
-    i = 0;
-    c = 0;
 	if (sa == SIGUSR2)
 		c = c << 1;
 	else if (sa == SIGUSR1)
-		c = (c << 1) | 0b00000001;
+		c = (c << 1) | 1;
     i++;
     if (i == 8)
     {
-        ft_printf("%c", c);
+        ft_printf("%c\n", c);
         i = 0;
         c = 0;
-        ft_printf("\n");
     }
 }
 
