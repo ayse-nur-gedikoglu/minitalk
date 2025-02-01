@@ -1,5 +1,5 @@
-#include "minitalk.h"
-#include "libft/inc/libft.h"
+#include "../inc/minitalk.h"
+#include "../libft/inc/libft.h"
 
 void    ft_chrtobit(int pid, char *str)
 {

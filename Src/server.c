@@ -1,5 +1,5 @@
-#include "minitalk.h"
-#include "libft/inc/libft.h"
+#include "../inc/minitalk.h"
+#include "../libft/inc/libft.h"
 
 void    ft_handler(int sa)
 {
@@ -13,7 +13,7 @@ void    ft_handler(int sa)
     i++;
     if (i == 8)
     {
-        ft_printf("%c\n", c);
+        ft_printf("%c", c);
         i = 0;
         c = 0;
     }
@@ -27,8 +27,6 @@ int main(void)
     sigemptyset(&sa.sa_mask);
     sa.sa_flags = 0;
     sa.sa_handler = ft_handler;
-    sigaction(SIGUSR1, &sa, NULL);
-    sigaction(SIGUSR2, &sa, NULL);
     if (sigaction(SIGUSR1, &sa, NULL) == -1 
         || sigaction(SIGUSR2, &sa, NULL) == -1)
     {

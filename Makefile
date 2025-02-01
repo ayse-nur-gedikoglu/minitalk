@@ -7,18 +7,30 @@ OBJDIR = obj
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC = $(wildcard $(SRCDIR)/*.c)
-OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+CLIENT = client
+SERVER = server
+
+SRC_CLIENT = $(SRCDIR)/client.c
+SRC_SERVER = $(SRCDIR)/server.c
+
+OBJ_CLIENT = $(OBJDIR)/client.o
+OBJ_SERVER = $(OBJDIR)/server.o
 
 # Renkli mesajlar
 GREEN = \033[0;32m
 RESET = \033[0m
 
-all: libft $(NAME)
+all: libft $(CLIENT) $(SERVER)
 
-$(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
-	@echo "$(GREEN)Minitalk compiled successfully!$(RESET)"
+$(CLIENT): $(OBJ_CLIENT)
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIENT) -L$(LIBFT_DIR) -lft
+	@echo "$(GREEN)Client compiled successfully!$(RESET)"
+
+$(SERVER): $(OBJ_SERVER)
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERVER) -L$(LIBFT_DIR) -lft
+	@echo "$(GREEN)Server compiled successfully!$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
@@ -33,7 +45,7 @@ clean:
 	@echo "Temporary files cleared."
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(CLIENT) $(SERVER)
 	@make -C $(LIBFT_DIR) fclean
 	@echo "All files cleared."
 
