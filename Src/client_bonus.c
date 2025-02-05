@@ -5,10 +5,12 @@ void    ft_chrtobit(int pid, char *str)
 {
     int i;
     int bit;
+    unsigned char c;
 
     i = 0;
     while (str[i])
     {
+        c = str[i];
         bit = 7;
         while (bit >= 0)
         {
@@ -19,6 +21,7 @@ void    ft_chrtobit(int pid, char *str)
             bit--;
             usleep(142);
         }
+        pause();
         i++;
     }
 }
