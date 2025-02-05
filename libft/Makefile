@@ -18,26 +18,37 @@ SRCDIR = src
 OBJDIR = obj
 HEADER_DIR = inc
 
-SRC = $(wildcard $(SRCDIR)/*.c)
-OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+SRC = $(SRCDIR)/ft_atoi.c \
+      $(SRCDIR)/ft_printf_alnum.c \
+      $(SRCDIR)/ft_printf.c
+
+OBJ = $(OBJDIR)/ft_atoi.o \
+      $(OBJDIR)/ft_printf_alnum.o \
+      $(OBJDIR)/ft_printf.o
+
+GREEN = \033[0;32m
+CYAN = \033[0;36m
+YELLOW = \033[0;33m
+RESET = \033[0m
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $@ $^
-	@echo "Libft created successfully!"
+	@echo "$(GREEN)Libft created successfully!$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(CYAN)Compiled $< successfully!$(RESET)"
 
 clean:
 	@rm -rf $(OBJDIR)
-	@echo "Cleared libft temporary files."
+	@echo "$(YELLOW)Cleared libft temporary files.$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "Libft completely cleaned."
+	@echo "$(YELLOW)Libft completely cleaned.$(RESET)"
 
 re: fclean all
 

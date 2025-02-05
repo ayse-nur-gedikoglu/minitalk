@@ -19,11 +19,11 @@ void    ft_handler(int sa)
     }
 }
 
-int main(void)
+int main(int ac, char* av[])
 {
     struct  sigaction    sa;
     pid_t server_pid;
-
+    
     sigemptyset(&sa.sa_mask);
     sa.sa_flags = 0;
     sa.sa_handler = ft_handler;
