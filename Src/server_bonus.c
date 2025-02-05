@@ -20,7 +20,7 @@ void    ft_handler(int sa)
     }
 }
 
-int main(int ac, char* av[])
+int main(void)
 {
     struct  sigaction    sa;
     pid_t server_pid;
