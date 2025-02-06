@@ -1,6 +1,8 @@
 #include "../inc/minitalk_bonus.h"
 #include "../libft/inc/libft.h"
 
+//bonusumu çalıştırana çukulata veririm :3
+
 void    ft_handler(int sa)
 {
     static  int i = 0;
