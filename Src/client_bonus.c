@@ -17,9 +17,9 @@ void    ft_chrtobit(int pid, char *str)
             else
             	kill(pid, SIGUSR2);
             bit--;
-            usleep(142);
+            usleep(1042);
         }
-        pause();
+        ft_printf("Received confirmation for character: %c\n", str[i]); 
         i++;
     }
 }

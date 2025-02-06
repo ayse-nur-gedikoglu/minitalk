@@ -35,7 +35,7 @@ int main(void)
         return (1);
     }
     server_pid = getpid();
-    ft_printf("Server PID:%d\n", server_pid);
+    ft_printf("Server PID: %d\n", server_pid);
     while (1)
         pause();
     return (0);

@@ -22,7 +22,6 @@ OBJ_SERVER = $(OBJDIR)/server.o
 OBJ_CLIENT_BONUS = $(OBJDIR)/client_bonus.o
 OBJ_SERVER_BONUS = $(OBJDIR)/server_bonus.o
 
-# Renkler
 GREEN = \033[0;32m
 CYAN = \033[0;36m
 YELLOW = \033[0;33m
