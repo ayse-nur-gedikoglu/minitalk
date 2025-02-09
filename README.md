@@ -113,3 +113,64 @@ Sinyallerin temel amacı, bir sürece belirli bir olayın meydana geldiğini bil
 **Özetle:**
 
 Sinyaller, işletim sistemi ve süreçler arasında ve süreçlerin kendi aralarında asenkron iletişim kurmasını sağlayan güçlü bir mekanizmadır. Olaylara hızlı bir şekilde tepki vermeyi, hataları işlemeyi ve süreçleri yönetmeyi mümkün kılarlar. `signal.h` başlık dosyası ve ilgili sistem çağrıları (`signal`, `sigaction`, `kill` vb.) bu mekanizmayı programlarımızda kullanmamızı sağlar.
+
+![mini](https://github.com/user-attachments/assets/93b76cc0-d2f8-4dda-86a0-c0f94bb9b27a)
+Kaynak: https://42-cursus.gitbook.io/guide/rank-02/minitalk/understand-minitalk
+
+Bu görsel, bir **client** (istemci) ve **server** (sunucu) arasında sinyallerle veri iletiminin nasıl gerçekleştiğini açıklıyor.
+
+---
+
+### **Client ve Server Arasında "Hello" Gönderimi**
+
+1. **İletişim Başlangıcı**:
+    - İstemci, `"Hello"` kelimesini server'a göndermek istiyor. Ancak `"Hello"` gibi bir string (metin) doğrudan sinyallerle gönderilemez.
+    
+
+---
+
+1. **ASCII Dönüşümü**:
+    - `"Hello"` stringindeki her karakter, ASCII tablosuna göre bir sayıya dönüştürülür:
+        - `H -> 72`
+        - `e -> 101`
+        - `l -> 108`
+        - `l -> 108`
+        - `o -> 111`
+
+---
+
+1. **Binary (İkili) Dönüşüm**:
+    - Bu ASCII değerleri, binary (ikili) formata çevrilir:
+        - `H (72)` → `01001000`
+        - `e (101)` → `01100101`
+        - `l (108)` → `01101100`
+        - `l (108)` → `01101100`
+        - `o (111)` → `01101111`
+    - Her karakterin ASCII değeri 8-bitlik binary veriye çevrildiği için toplamda:
+        - 5 harf x 8 bit = **40 bit** sinyal iletilir.
+
+---
+
+1. **Sinyallerin Gönderimi**:
+    - Bu binary veriler, **bit bit** (0 ve 1'ler şeklinde) sinyallerle server'a gönderilir.
+    - Her 0 ve 1 bir sinyal dalgasını temsil eder:
+        - Örneğin: `0, 1, 0, 0, 1, 0, 0, 0` şeklinde ilerler.
+    - İstemci bu sinyalleri gönderirken, her bit birer birer server'a iletilir.
+
+---
+
+1. **Server Tarafında Alınan Veri**:
+    - Server, gelen sinyalleri toplar ve binary veriye dönüştürür.
+    - Binary veri tekrar ASCII'ye çevrilir:
+        - `01001000` → `H`
+        - `01100101` → `e`
+        - `01101100` → `l`
+        - `01101100` → `l`
+        - `01101111` → `o`
+    - Bu işlem sonucunda server, `"Hello"` stringini yeniden oluşturur.
+
+---
+
+
+
+
