@@ -3,6 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinc
 
 SRCDIR = src
+SRCBDIR = src_bonus
 OBJDIR = obj
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -14,8 +15,8 @@ SERVER_BONUS = server_bonus
 
 SRC_CLIENT = $(SRCDIR)/client.c
 SRC_SERVER = $(SRCDIR)/server.c
-SRC_CLIENT_BONUS = $(SRCDIR)/client_bonus.c
-SRC_SERVER_BONUS = $(SRCDIR)/server_bonus.c
+SRC_CLIENT_BONUS = $(SRCBDIR)/client_bonus.c
+SRC_SERVER_BONUS = $(SRCBDIR)/server_bonus.c
 
 OBJ_CLIENT = $(OBJDIR)/client.o
 OBJ_SERVER = $(OBJDIR)/server.o
