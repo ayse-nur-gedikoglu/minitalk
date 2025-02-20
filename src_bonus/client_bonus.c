@@ -19,6 +19,8 @@ void	signal_handler(int signum)
 {
 	if (signum == SIGUSR1)
 		g_signal_received = 1;
+	else
+		exit();
 }
 
 void	ft_chrtobit(int pid, char *str)
