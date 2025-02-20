@@ -1,16 +1,28 @@
-#include "../inc/minitalk_bonus.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agedikog <agedikog@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/09 16:54:35 by agedikog          #+#    #+#             */
+/*   Updated: 2025/02/09 16:54:35 by agedikog         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc_bonus/minitalk_bonus.h"
 #include "../libft/inc/libft.h"
 
 void	ft_handler(int sa, siginfo_t *info, void *context)
 {
-	static int i = 0;
-	static int c = 0;
+	static int	i = 0;
+	static int	c = 0;
 
 	(void)context;
 	if (sa == SIGUSR2)
 		c = c << 1;
 	else if (sa == SIGUSR1)
-		c = (c << 1) | 1; 
+		c = (c << 1) | 1;
 	i++;
 	if (i == 8)
 	{
@@ -23,13 +35,13 @@ void	ft_handler(int sa, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	struct sigaction sa;
-	pid_t server_pid;
+	struct sigaction	sa;
+	pid_t				server_pid;
 
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = &ft_handler;
 	sigemptyset(&sa.sa_mask);
-	if (sigaction(SIGUSR1, &sa, NULL) == -1 
+	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 	{
 		ft_printf("Error calling sigaction.");

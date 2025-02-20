@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agedikog <gedikoglu_27@icloud.com>         +#+  +:+       +#+        */
+/*   By: agedikog <agedikog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 20:33:15 by agedikog          #+#    #+#             */
-/*   Updated: 2024/10/24 13:25:40 by agedikog         ###   ########.fr       */
+/*   Created: 2025/02/09 17:10:53 by agedikog          #+#    #+#             */
+/*   Updated: 2025/02/09 17:10:53 by agedikog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *str)
 {
-	int	res;
-	int	sign;
+	int		res;
+	int		sign;
 
 	res = 0;
 	sign = 1;

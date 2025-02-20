@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agedikog <gedikoglu_27@icloud.com>         +#+  +:+       +#+         #
+#    By: agedikog <agedikog@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/07 11:57:12 by agedikog          #+#    #+#              #
-#    Updated: 2024/11/11 14:13:56 by agedikog         ###   ########.fr        #
+#    Created: 2025/02/09 13:29:40 by agedikog          #+#    #+#              #
+#    Updated: 2025/02/09 13:29:40 by agedikog         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,29 +26,24 @@ OBJ = $(OBJDIR)/ft_atoi.o \
       $(OBJDIR)/ft_printf_alnum.o \
       $(OBJDIR)/ft_printf.o
 
-GREEN = \033[0;32m
-CYAN = \033[0;36m
-YELLOW = \033[0;33m
-RESET = \033[0m
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $@ $^
-	@echo "$(GREEN)Libft created successfully!$(RESET)"
+	@echo "Libft created successfully!"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(CYAN)Compiled $< successfully!$(RESET)"
+	@echo "Compiled $< successfully!"
 
 clean:
 	@rm -rf $(OBJDIR)
-	@echo "$(YELLOW)Cleared libft temporary files.$(RESET)"
+	@echo "Cleared libft temporary files."
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(YELLOW)Libft completely cleaned.$(RESET)"
+	@echo "Libft completely cleaned."
 
 re: fclean all
 

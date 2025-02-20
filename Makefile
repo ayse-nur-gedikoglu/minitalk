@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: agedikog <agedikog@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/02/10 15:56:21 by agedikog          #+#    #+#              #
+#    Updated: 2025/02/10 15:56:21 by agedikog         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minitalk
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinc
@@ -23,54 +35,59 @@ OBJ_SERVER = $(OBJDIR)/server.o
 OBJ_CLIENT_BONUS = $(OBJDIR)/client_bonus.o
 OBJ_SERVER_BONUS = $(OBJDIR)/server_bonus.o
 
-GREEN = \033[0;32m
-CYAN = \033[0;36m
-YELLOW = \033[0;33m
-RED = \033[0;31m
-RESET = \033[0m
+OBJS = $(OBJ_CLIENT) $(OBJ_SERVER)
+OBJS_BONUS = $(OBJ_CLIENT_BONUS) $(OBJ_SERVER_BONUS)
 
 all: libft $(CLIENT) $(SERVER)
+	@echo "All files are up to date."
 
-bonus: libft $(CLIENT_BONUS) $(SERVER_BONUS)
+bonus: libft | $(OBJDIR)
+	@$(MAKE) $(CLIENT_BONUS)
+	@$(MAKE) $(SERVER_BONUS)
+	@echo "Bonus files are up to date."
 
-$(CLIENT): $(OBJ_CLIENT)
-	@mkdir -p $(OBJDIR)
+$(CLIENT): $(OBJ_CLIENT) $(LIBFT) | $(OBJDIR)
 	@$(CC) $(CFLAGS) -o $(CLIENT) $(OBJ_CLIENT) -L$(LIBFT_DIR) -lft
-	@echo "$(GREEN)Client compiled successfully!$(RESET)"
+	@echo "Client compiled successfully!"
 
-$(SERVER): $(OBJ_SERVER)
-	@mkdir -p $(OBJDIR)
+$(SERVER): $(OBJ_SERVER) $(LIBFT) | $(OBJDIR)
 	@$(CC) $(CFLAGS) -o $(SERVER) $(OBJ_SERVER) -L$(LIBFT_DIR) -lft
-	@echo "$(GREEN)Server compiled successfully!$(RESET)"
+	@echo "Server compiled successfully!"
 
-$(CLIENT_BONUS): $(OBJ_CLIENT_BONUS)
-	@mkdir -p $(OBJDIR)
+$(CLIENT_BONUS): $(OBJ_CLIENT_BONUS) $(LIBFT) | $(OBJDIR)
 	@$(CC) $(CFLAGS) -o $(CLIENT_BONUS) $(OBJ_CLIENT_BONUS) -L$(LIBFT_DIR) -lft
-	@echo "$(CYAN)Client Bonus compiled successfully!$(RESET)"
+	@echo "Client Bonus compiled successfully!"
 
-$(SERVER_BONUS): $(OBJ_SERVER_BONUS)
-	@mkdir -p $(OBJDIR)
+$(SERVER_BONUS): $(OBJ_SERVER_BONUS) $(LIBFT) | $(OBJDIR)
 	@$(CC) $(CFLAGS) -o $(SERVER_BONUS) $(OBJ_SERVER_BONUS) -L$(LIBFT_DIR) -lft
-	@echo "$(CYAN)Server Bonus compiled successfully!$(RESET)"
+	@echo "Server Bonus compiled successfully!"
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(YELLOW)Compiled $< successfully!$(RESET)"
 
-libft:
-	@make -C $(LIBFT_DIR)
+$(OBJDIR)/%.o: $(SRCBDIR)/%.c | $(OBJDIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
+libft: $(LIBFT)
+	@make -C $(LIBFT_DIR) --silent
+
+$(LIBFT):
+	@make -C $(LIBFT_DIR) --silent
 
 clean:
 	@rm -rf $(OBJDIR)
-	@make -C $(LIBFT_DIR) clean
-	@echo "$(RED)Temporary files cleared.$(RESET)"
+	@make -C $(LIBFT_DIR) clean --silent
+	@echo "Temporary files cleared."
 
 fclean: clean
 	@rm -f $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
-	@make -C $(LIBFT_DIR) fclean
-	@echo "$(RED)All files cleared.$(RESET)"
+	@make -C $(LIBFT_DIR) fclean --silent
+	@echo "All files cleared."
 
 re: fclean all
 
 .PHONY: all clean fclean re libft bonus
+	
