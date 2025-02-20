@@ -46,9 +46,7 @@ void	ft_chrtobit(int pid, char *str)
 		i++;
 	}
 	if (str[0] != '\n')
-	{
 		ft_printf("Message received.\n");
-	}
 }
 
 int	main(int ac, char *av[])
