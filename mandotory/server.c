@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server_bonus.c                                     :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agedikog <agedikog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/09 16:54:35 by agedikog          #+#    #+#             */
-/*   Updated: 2025/02/09 16:54:35 by agedikog         ###   ########.fr       */
+/*   Created: 2025/02/09 13:30:06 by agedikog          #+#    #+#             */
+/*   Updated: 2025/02/09 13:30:06 by agedikog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc_bonus/minitalk_bonus.h"
+#include "inc/minitalk.h"
 #include "../libft/inc/libft.h"
 
-void	ft_handler(int sa, siginfo_t *info, void *context)
+void	ft_handler(int sig, siginfo_t *info, void *context)
 {
 	static int	i = 0;
 	static int	c = 0;
 
 	(void)context;
-	if (sa == SIGUSR2)
+	if (sig == SIGUSR2)
 		c = c << 1;
-	else if (sa == SIGUSR1)
+	else if (sig == SIGUSR1)
 		c = (c << 1) | 1;
 	i++;
-	if (i == 8)
+	if (i == 7)
 	{
 		ft_printf("%c", c);
 		i = 0;
@@ -38,13 +38,13 @@ int	main(void)
 	struct sigaction	sa;
 	pid_t				server_pid;
 
-	sa.sa_flags = SA_SIGINFO;
-	sa.sa_sigaction = &ft_handler;
 	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_SIGINFO | SA_RESTART;
+	sa.sa_sigaction = ft_handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
 	{
-		ft_printf("Error calling sigaction.");
+		ft_printf("Error calling sigaction.\n");
 		return (1);
 	}
 	server_pid = getpid();

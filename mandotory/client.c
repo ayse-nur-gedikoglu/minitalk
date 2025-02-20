@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agedikog <agedikog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/09 13:29:49 by agedikog          #+#    #+#             */
-/*   Updated: 2025/02/09 13:29:49 by agedikog         ###   ########.fr       */
+/*   Created: 2025/02/09 17:43:47 by agedikog          #+#    #+#             */
+/*   Updated: 2025/02/09 17:43:47 by agedikog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc_bonus/minitalk_bonus.h"
+#include "inc/minitalk.h"
 #include "../libft/inc/libft.h"
 
 volatile sig_atomic_t	g_signal_received = 0;
@@ -31,7 +31,7 @@ void	ft_chrtobit(int pid, char *str)
 	i = 0;
 	while (str[i])
 	{
-		bit = 7;
+		bit = 6;
 		while (bit >= 0)
 		{
 			g_signal_received = 0;
@@ -45,10 +45,6 @@ void	ft_chrtobit(int pid, char *str)
 		}
 		i++;
 	}
-	if (str[0] != '\n')
-	{
-		ft_printf("Message received.\n");
-	}
 }
 
 int	main(int ac, char *av[])
@@ -59,7 +55,7 @@ int	main(int ac, char *av[])
 	if (ac == 3)
 	{
 		server_pid = ft_atoi(av[1]);
-		if (kill(server_pid, 0) == -1 || server_pid >= 4194304
+		if (kill(server_pid, 0) == -1 || server_pid > 4194304
 			|| server_pid == -1)
 		{
 			ft_printf("Invalid PID\n");

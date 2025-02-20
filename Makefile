@@ -14,8 +14,8 @@ NAME = minitalk
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinc
 
-SRCDIR = src
-SRCBDIR = src_bonus
+SRCDIR = mandotory
+SRCBDIR = bonus
 OBJDIR = obj
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
