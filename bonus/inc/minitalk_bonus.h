@@ -14,6 +14,7 @@
 # define MINITALK_BONUS_H
 
 # include <signal.h>
+# include <stdlib.h>
 # include <unistd.h>
 
 #endif

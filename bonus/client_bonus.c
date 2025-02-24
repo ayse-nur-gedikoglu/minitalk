@@ -20,7 +20,7 @@ void	signal_handler(int signum)
 	if (signum == SIGUSR1)
 		g_signal_received = 1;
 	else
-		exit();
+		exit(EXIT_SUCCESS);
 }
 
 void	ft_chrtobit(int pid, char *str)
@@ -69,6 +69,6 @@ int	main(int ac, char *av[])
 		ft_chrtobit(server_pid, "\n");
 	}
 	else
-		ft_printf("1. arg: ./program name 2. arg: PID, 3. arg: ""message""\n");
+		ft_printf("1. arg: %s 2. arg: PID, 3. arg: ""message""\n", av[0]);
 	return (0);
 }

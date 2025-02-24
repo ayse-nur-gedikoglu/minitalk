@@ -39,7 +39,7 @@ int	main(void)
 	pid_t				server_pid;
 
 	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_SIGINFO | SA_RESTART;
+	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = ft_handler;
 	if (sigaction(SIGUSR1, &sa, NULL) == -1
 		|| sigaction(SIGUSR2, &sa, NULL) == -1)
